@@ -1,0 +1,10 @@
+<nav class="navbar">
+	<div class="nav-links">
+		<a routerLink="/cars" routerLinkActive="active">Cars</a>
+		<a routerLink="/bikes" routerLinkActive="active">Bikes</a>
+	</div>
+	<div class="cart" role="button" aria-label="Open cart">
+		<span class="cart-icon">🛒</span>
+		<span class="cart-badge">{{ cartCount$ | async }}</span>
+	</div>
+</nav>

@@ -1,0 +1,47 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+
+  .nav-links {
+    a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.5rem;
+      
+      &.active {
+        background-color: #555;
+        border-radius: 4px;
+      }
+
+      &:hover {
+        background-color: #444;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .cart {
+    position: relative;
+    
+    .cart-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.8rem;
+    }
+  }
+}

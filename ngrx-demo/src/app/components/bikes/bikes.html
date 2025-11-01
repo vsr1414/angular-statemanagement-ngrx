@@ -1,0 +1,8 @@
+<div class="container">
+	<h2>Bikes</h2>
+	<div class="items-list">
+		<ng-container *ngFor="let bike of bikes; trackBy: trackByBike">
+			<app-item [name]="bike"></app-item>
+		</ng-container>
+	</div>
+</div>
