@@ -1,6 +1,6 @@
 import { Product } from "../components/models/product.model";
 
-export interface State {
+export interface AppState {
   cart: CartState;
 }
 
