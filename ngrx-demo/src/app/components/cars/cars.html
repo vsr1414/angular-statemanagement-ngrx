@@ -2,7 +2,7 @@
 	<h2>Cars</h2>
 	<div class="items-list">
 		<ng-container *ngFor="let car of cars; trackBy: trackByCar">
-			<app-item [name]="car"></app-item>
+			<app-item [item]="car"></app-item>
 		</ng-container>
 	</div>
 </div>

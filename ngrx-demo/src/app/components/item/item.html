@@ -1,8 +1,8 @@
 <div class="item">
-	<span class="name">{{ name }}</span>
+	<span class="name">{{ item.name}} - {{item.price}}</span>
 	<div class="controls">
-		<button (click)="removeFromCart()" aria-label="Decrease">-</button>
+		<button (click)="removeFromCart(item.id)" aria-label="Decrease">-</button>
 		<span class="count">{{ count }}</span>
-		<button (click)="addToCart()" aria-label="Increase">+</button>
+		<button (click)="addToCart(item)" aria-label="Increase">+</button>
 	</div>
 </div>
