@@ -2,7 +2,8 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../cart.service';
 import { Store } from '@ngrx/store';
-import { addToCart, removeFromCart } from '../../store/cart.actions';
+import { addToCart, removeFromCart } from '../../store/app.actions';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-item',
@@ -12,17 +13,17 @@ import { addToCart, removeFromCart } from '../../store/cart.actions';
   styleUrl: './item.scss',
 })
 export class Item {
-  @Input() name!: string;
+  @Input() item!: Product;
   count = 0;
 
   private cartService = inject(CartService);
   private store = inject(Store);
 
-  addToCart() {
-    this.store.dispatch(addToCart());
+  addToCart(item: Product) {
+    this.store.dispatch(addToCart({ product: item }));
   }
 
-  removeFromCart() {
-    this.store.dispatch(removeFromCart());
+  removeFromCart(id: number) {
+    this.store.dispatch(removeFromCart({id : id}));
   }
 }
