@@ -2,7 +2,7 @@ import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../cart.service';
 import { Store } from '@ngrx/store';
-import { addToCart, removeFromCart } from '../../store/cart.actions';
+import { addToCart, removeFromCart } from '../../store/app.actions';
 import { Product } from '../models/product.model';
 
 @Component({
@@ -20,10 +20,10 @@ export class Item {
   private store = inject(Store);
 
   addToCart(item: Product) {
-    this.store.dispatch(addToCart());
+    this.store.dispatch(addToCart({ product: item }));
   }
 
   removeFromCart(id: number) {
-    this.store.dispatch(removeFromCart());
+    this.store.dispatch(removeFromCart({id : id}));
   }
 }

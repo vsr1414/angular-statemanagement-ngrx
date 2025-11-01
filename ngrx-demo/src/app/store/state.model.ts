@@ -1,8 +1,10 @@
+import { Product } from "../components/models/product.model";
+
 export interface State {
-  cartCount: number;
+  cart: CartState;
 }
 
 export interface CartState {
-  items: any[];
+  items: Product[];
   total: number;
 }
