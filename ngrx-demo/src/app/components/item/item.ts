@@ -1,6 +1,8 @@
 import { Component, Input, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartService } from '../cart.service';
+import { CartService } from '../../cart.service';
+import { Store } from '@ngrx/store';
+import { addToCart, removeFromCart } from '../../store/cart.actions';
 
 @Component({
   selector: 'app-item',
@@ -14,16 +16,13 @@ export class Item {
   count = 0;
 
   private cartService = inject(CartService);
+  private store = inject(Store);
 
-  increment() {
-    this.count++;
-    this.cartService.increment();
+  addToCart() {
+    this.store.dispatch(addToCart());
   }
 
-  decrement() {
-    if (this.count > 0) {
-      this.count--;
-      this.cartService.decrement();
-    }
+  removeFromCart() {
+    this.store.dispatch(removeFromCart());
   }
 }
