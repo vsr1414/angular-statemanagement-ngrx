@@ -11,4 +11,28 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
   }
+
+  .loader {
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+    font-weight: 600;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 0.5rem auto;
+    display: block;
+    animation: spin 1s linear infinite;
+  }
+
+  .spinner .path {
+    stroke: #b859af;
+    stroke-linecap: round;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
 }

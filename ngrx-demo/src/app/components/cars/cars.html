@@ -1,9 +1,19 @@
 <div class="container">
 	<h2>Cars</h2>
-	<div class="items-list">
-		<ng-container *ngFor="let car of cars; trackBy: trackByCar">
-			<app-item [item]="car"></app-item>
-		</ng-container>
-	</div>
+	@if (loading) {
+		<div class="loader" role="status" aria-live="polite">
+			<svg class="spinner" viewBox="0 0 50 50" aria-hidden="true">
+				<circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+			</svg>
+			<span class="visually-hidden">Loading cars…</span>
+		</div>
+	}
+	@if (!loading) {
+		<div class="items-list">
+			@for (car of cars; track car.id) {
+				<app-item [item]="car"></app-item>
+			}
+		</div>
+	}
 </div>
     

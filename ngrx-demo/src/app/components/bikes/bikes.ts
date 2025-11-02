@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Item } from '../item/item';
 import { CommonModule } from '@angular/common';
 import { Product } from '../models/product.model';
+import { DataService } from '../shared/data.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-bikes',
@@ -11,13 +13,21 @@ import { Product } from '../models/product.model';
   styleUrl: './bikes.scss',
 })
 export class Bikes {
-  bikes: Product[] = [
-    { id: 1, name: 'Trek Émonda', price: 2499 },
-    { id: 2, name: 'Specialized Turbo', price: 4999 },
-    { id: 3, name: 'Giant Propel', price: 2999 },
-    { id: 4, name: 'Canyon Aeroad', price: 3999 },
-  ];
 
+  private dataService = inject(DataService);
+  bikes: Product[] = [];
+  loading = true;
+
+  ngOnInit() {
+    this.loading = true;
+    this.dataService
+      .getBikesData()
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe({
+        next: (data: Product[]) => (this.bikes = data),
+        error: () => (this.bikes = []),
+      });
+  }
   trackByBike(index: number, item: Product) {
     return item.id;
   }
