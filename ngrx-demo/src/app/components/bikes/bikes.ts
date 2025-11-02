@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../models/product.model';
 import { DataService } from '../shared/data.service';
 import { finalize } from 'rxjs';
+import { SharedService } from '../shared/shared.service';
 
 @Component({
   selector: 'app-bikes',
@@ -14,19 +15,22 @@ import { finalize } from 'rxjs';
 })
 export class Bikes {
 
-  private dataService = inject(DataService);
+  private sharedService = inject(SharedService);
   bikes: Product[] = [];
-  loading = true;
+  loading = false;
 
   ngOnInit() {
-    this.loading = true;
-    this.dataService
-      .getBikesData()
-      .pipe(finalize(() => (this.loading = false)))
-      .subscribe({
-        next: (data: Product[]) => (this.bikes = data),
-        error: () => (this.bikes = []),
-      });
+    // this.dataService
+    //   .getBikesData()
+    //   .pipe(finalize(() => (this.loading = false)))
+    //   .subscribe({
+    //     next: (data: Product[]) => (this.bikes = data),
+    //     error: () => (this.bikes = []),
+    //   });
+    this.sharedService.bikesData.subscribe({
+      next: (data: Product[]) => (this.bikes = data),
+      error: () => (this.bikes = []),
+    });
   }
   trackByBike(index: number, item: Product) {
     return item.id;
